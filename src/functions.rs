@@ -77,6 +77,17 @@ pub fn rot13(data: String) -> String {
     result
 }
 
-pub fn decodecypher(data:String) -> String {
-    data
+pub fn decodecypher(cypher:&str) -> () {
+    // first rot13
+    let unrot13: String = rot13(cypher.to_string());
+    // println!("Unrot13 - {}", unrot13);
+
+    //base64 decode
+    let bytes = base64::decode(&unrot13).unwrap();
+    let string_utf8_lossy = String::from_utf8_lossy(&bytes);
+    // println!("decode base64: {}", string_utf8_lossy);
+
+    
+    let last_unrot13: String = rot13(string_utf8_lossy.to_string());
+    println!("Decoded plaintext - {}", last_unrot13);
 }
