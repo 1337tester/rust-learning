@@ -28,5 +28,5 @@ pub use crate::functions::rot13;
 fn main() {
     // experiment();
     // server();
-    decodecypher("M3I6r2IbMzq9")
+    println!("Decoded plaintext - {}", decodecypher("M3I6r2IbMzq9"));
 }

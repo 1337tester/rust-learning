@@ -77,7 +77,7 @@ pub fn rot13(data: String) -> String {
     result
 }
 
-pub fn decodecypher(cypher:&str) -> () {
+pub fn decodecypher(cypher:&str) -> String {
     // first rot13
     let unrot13: String = rot13(cypher.to_string());
     // println!("Unrot13 - {}", unrot13);
@@ -89,5 +89,6 @@ pub fn decodecypher(cypher:&str) -> () {
 
     
     let last_unrot13: String = rot13(string_utf8_lossy.to_string());
-    println!("Decoded plaintext - {}", last_unrot13);
+    // println!("Decoded plaintext - {}", last_unrot13);
+    last_unrot13
 }
