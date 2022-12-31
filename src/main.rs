@@ -1,10 +1,12 @@
 #![allow(dead_code)]
 #[macro_use] extern crate nickel;
 extern crate base64;
+extern crate log;
+extern crate env_logger;
 mod functions;
+mod micros;
+use crate::micros::microser;
 
 fn main() {
-    // functions::experiment();
-    println!("Decoded plaintext - {}", functions::decodecypher("M3I6r2IbMzq9"));
-    // functions::server();
+    microser();
 }
