@@ -45,6 +45,13 @@ async fn echo(req: Request<Body>) -> Result<Response<Body>, hyper::Error> {
     }
 }
 
+async fn shutdown_signal() {
+    // Wait for the CTRL+C signal
+    tokio::signal::ctrl_c()
+        .await
+        .expect("failed to install CTRL+C signal handler");
+}
+
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error + Send + Sync>> {
     env_logger::init();
@@ -62,8 +69,11 @@ async fn main() -> Result<(), Box<dyn std::error::Error + Send + Sync>> {
 
     let server = Server::bind(&addr).serve(make_svc);
 
+    let graceful = server.with_graceful_shutdown(shutdown_signal());
     // Run this server for... forever!
-    server.await?;
+    if let Err(e) = graceful.await {
+        error!("server error: {}", e);
+    }
 
     Ok(())
 }
