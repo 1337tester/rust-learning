@@ -1,22 +1,4 @@
-use nickel::Nickel;
-
-fn say_hello() -> &'static str {
-    "Hello dear world (inside function)!"
-}
-
-pub fn server() {
-    let mut server = Nickel::new();
-
-    server.utilize(router! {
-        get "**" => |_req, _res| {
-            say_hello()
-        }
-    });
-
-    server.listen("127.0.0.1:6767").unwrap();
-}
-
-pub fn experiment() {
+fn experiment() {
     // iterating strings
     for character in "Здравствуйте".chars() {
         println!("{character}");
@@ -49,4 +31,8 @@ pub fn experiment() {
     for val in a_iter {
     println!("The value is {}", val);
 }
+}
+
+fn main() {
+    experiment();
 }
