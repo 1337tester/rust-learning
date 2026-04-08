@@ -13,6 +13,11 @@ log = "0.4.1"
 hyper = { version = "0.14", features = ["full"] }
 tokio = { version = "1", features = ["full"] }
 futures-util = { version = "0.3", default-features = false }
+chrono = "0.4"
 
 [[example]]
 name = "micros" # examples/micros.rs
+
+[[bin]]
+name = "try"
+path = "try.rs"

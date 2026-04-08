@@ -1,8 +1,9 @@
-#!/usr/bin/env -S cargo +nightly -Zscript
+use learning_rust::{factorial, palindrome};
+use chrono::Local;
 
-//! This is a Rust script
 fn main() {
-    println!("Hello from script! Today is {}.", "February 2, 2026");
+    let date = Local::now().format("%B %e, %Y");
+    println!("Hello from script! Today is {}.", date);
 
     let v = vec![1,2,3,4];
     summing::sum_vec(v.clone());
@@ -11,7 +12,7 @@ fn main() {
     println!("Alternative calc of sum is: {sum}");
 
     let num = 6;
-    factorial(num);
+    println!("Factorial of {num} is: {}", factorial(num));
 
     let word1 = "palindrome";
     println!("Is word '{word1}' a palindrome? -> {}", palindrome(word1));
